@@ -4,7 +4,7 @@ require("dotenv").config();
 const { connection } = require("./Config/db");
 const { AmazonRouter } = require("./Routers/AmazonRoutes");
 const {ProductRouter} = require("./Routers/AmazonProductsRouter")
-const cors=requre("cors")
+const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors())
