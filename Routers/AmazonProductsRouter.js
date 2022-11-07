@@ -17,17 +17,21 @@ ProductRouter.post("/:userId/create", Authentication, async (req, res) => {
   await createproduct.save();
   res.send({ msg: "Product Created", Product: createproduct });
 });
-
+ProductRouter.get("/:_id/one", Authentication, async (req, res) => {
+  const _id = req.params._id;
+  const userproducts = await DataModel.find({ _id });
+  res.send({ msg: "Product", product: userproducts });
+});
 ProductRouter.get("/:userId",Authentication, async (req, res) => {
   const userId = req.params.userId;
   const userproducts = await DataModel.find({ userId });
   res.send({ msg: "All Produucts" ,products:userproducts });
 });
-ProductRouter.get("/:productId",Authentication, async (req, res) => {
-  const userId = req.params.userId;
-  const userproducts = await DataModel.find({ productId });
-  res.send({ msg: "All Produucts" ,products:userproducts });
-});
+
+
+
+
+
 
 ProductRouter.put("/:userId/update/:productId", async (req, res) => {
   //   const userId = req.params.userId;
@@ -40,6 +44,9 @@ ProductRouter.put("/:userId/update/:productId", async (req, res) => {
   });
   res.send({ msg: "All Products", Products: userproducts });
 });
+
+
+
 ProductRouter.delete("/:userId/delete/:productId", async (req, res) => {
   //   const userId = req.params.userId;
   const productId = req.params.productId;
