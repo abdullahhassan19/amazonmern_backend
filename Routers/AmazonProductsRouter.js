@@ -23,6 +23,11 @@ ProductRouter.get("/:userId",Authentication, async (req, res) => {
   const userproducts = await DataModel.find({ userId });
   res.send({ msg: "All Produucts" ,products:userproducts });
 });
+ProductRouter.get("/:productId",Authentication, async (req, res) => {
+  const userId = req.params.userId;
+  const userproducts = await DataModel.find({ productId });
+  res.send({ msg: "All Produucts" ,products:userproducts });
+});
 
 ProductRouter.put("/:userId/update/:productId", async (req, res) => {
   //   const userId = req.params.userId;
