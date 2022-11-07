@@ -5,7 +5,7 @@ const { DataModel } = require("../Models/Data.Model");
 
 
 
-ProductRouter.post("/create", Authentication, async (req, res) => {
+ProductRouter.post("/:userId/create", Authentication, async (req, res) => {
   const userId = req.params.userId;
   const { name, price, imageurl } = req.body;
   const createproduct = new DataModel({
