@@ -2,7 +2,10 @@ const { Router } = require("express");
 const ProductRouter = Router();
 const { Authentication } = require("../Midlewares/Authentication");
 const { DataModel } = require("../Models/Data.Model");
-ProductRouter.post("/:userId/create", Authentication, async (req, res) => {
+
+
+
+ProductRouter.post("/create", Authentication, async (req, res) => {
   const userId = req.params.userId;
   const { name, price, imageurl } = req.body;
   const createproduct = new DataModel({
@@ -15,11 +18,12 @@ ProductRouter.post("/:userId/create", Authentication, async (req, res) => {
   res.send({ msg: "Product Created", Product: createproduct });
 });
 
-ProductRouter.get("/:userId", async (req, res) => {
+ProductRouter.get("/:userId",Authentication, async (req, res) => {
   const userId = req.params.userId;
   const userproducts = await DataModel.find({ userId });
-  res.send({ msg: "Product Updated" });
+  res.send({ msg: "All Produucts" ,products:userproducts });
 });
+
 ProductRouter.put("/:userId/update/:productId", async (req, res) => {
   //   const userId = req.params.userId;
   const productId = req.params.productId;
