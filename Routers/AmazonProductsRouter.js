@@ -33,7 +33,7 @@ ProductRouter.get("/:userId",Authentication, async (req, res) => {
 
 
 
-ProductRouter.put("/:userId/update/:productId", async (req, res) => {
+ProductRouter.put("/:userId/update/:productId",Authentication, async (req, res) => {
   //   const userId = req.params.userId;
   const productId = req.params.productId;
   const { name, price, imageurl } = req.body;
@@ -42,12 +42,12 @@ ProductRouter.put("/:userId/update/:productId", async (req, res) => {
     price: price,
     imageurl: imageurl,
   });
-  res.send({ msg: "All Products", Products: userproducts });
+  res.send({ msg: "Product Updated" });
 });
 
 
 
-ProductRouter.delete("/:userId/delete/:productId", async (req, res) => {
+ProductRouter.delete("/:userId/delete/:productId",Authentication, async (req, res) => {
   //   const userId = req.params.userId;
   const productId = req.params.productId;
   //   const { name, price, imageurl } = req.body;
